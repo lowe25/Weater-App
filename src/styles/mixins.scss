@@ -1,0 +1,23 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin grid-center {
+    display: grid;
+    justify-content: center;
+}
+
+@mixin inputSetup {
+    height: 30px;
+    width: 200px;
+}
+
+@mixin list-none {
+    ul{
+        li{
+            list-style: none;
+            padding: 10px;
+        }
+    }
+}

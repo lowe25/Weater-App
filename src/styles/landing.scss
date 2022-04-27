@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.weather-form {
+  padding: 15px 0 15px 0;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  gap:10px;
+
+  
+  .txt-searchCountry,
+  .btn-searchCountry {
+    height: 35px;
+    width: 340px;
+  }
+  .btn-searchCountry {
+    cursor: pointer;
+  }
+  .inputs{
+    display: flex;
+    justify-content: center;
+    gap:20px;
+}
+}
+
+.con-status {
+  padding: 15px 0 15px 0;
+
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+
+  .weather-search {
+    height: 320px;
+    width: 340px;
+    border: 1px solid black;
+    padding: 20px;
+    @include list-none;
+  }
+
+  .weather-stat {
+    height: 320px;
+    width: 340px;
+    padding: 20px;
+    border: 1px solid black;
+    @include list-none;
+  }
+}
