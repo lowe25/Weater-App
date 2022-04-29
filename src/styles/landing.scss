@@ -3,51 +3,79 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.App {
+  font-family: $radio-canada;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+}
+.container {
+  display: grid;
+  align-items: center;
+}
 .weather-form {
   padding: 15px 0 15px 0;
   display: flex;
   flex-direction: row;
-  gap: 10px;
   justify-content: center;
-  gap:10px;
+  gap: 10px;
 
-  
+  .btn-con {
+    display: flex;
+    gap: 25px;
+  }
   .txt-searchCountry,
   .btn-searchCountry {
     height: 35px;
-    width: 340px;
+    width: 500px;
+    font-family: $radio-canada;
   }
   .btn-searchCountry {
     cursor: pointer;
+    background-color: #827e7e;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
   }
-  .inputs{
-    display: flex;
-    justify-content: center;
-    gap:20px;
-}
+  .txt-searchCountry::placeholder {
+    padding: 10px;
+    font-weight: bold;
+  }
+  .inputs {
+    @include flex-center;
+    gap: 20px;
+  }
 }
 
 .con-status {
   padding: 15px 0 15px 0;
-
-  display: flex;
-  justify-content: center;
+  @include flex-center;
   gap: 30px;
 
   .weather-search {
-    height: 320px;
-    width: 340px;
-    border: 1px solid black;
-    padding: 20px;
+    padding: 22px;
+    @include box-con;
     @include list-none;
+    h1 {
+      padding: 8px;
+    }
   }
 
   .weather-stat {
-    height: 320px;
-    width: 340px;
-    padding: 20px;
-    border: 1px solid black;
+    @include box-con;
     @include list-none;
+    h1 {
+      padding: 8px;
+    }
+    .temp-div {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      .temps {
+        height: 28px;
+        width: 50px;
+        cursor: pointer;
+      }
+    }
   }
 }

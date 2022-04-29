@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect,useState } from "react";
+import {useState } from "react";
 import "./App.scss";
 function App() {
   const [data, setData] = useState('');
@@ -12,12 +12,13 @@ function App() {
   const [pressure, setPressure] = useState('');
   const [sunset, setSunset] = useState('');
   const [sunrise, setsunRise] = useState('');
+  const [fah, setFah] = useState('');
+  const [cel, setCel] = useState('');
+  //const [img, setImg] = useState('');
+  const [isLoading, setIsLoading] = useState();
+
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-  }
-
-  useEffect(() => {
     axios.get('https://weatherapi-com.p.rapidapi.com/forecast.json', {
       method: 'GET',
       params: {q: `${data}`},
@@ -28,6 +29,9 @@ function App() {
     })
     .then(function (response){
       console.log(response.data)
+      setFah(response.data.current.feelslike_f);
+      setCel(response.data.current.feelslike_c);
+     // setImg(response.data.current.condition.icon);
       setPressure(response.data.current.pressure_mb);
       setWindmph(response.data.current.wind_mph);
       setWind(response.data.current.wind_dir);
@@ -37,11 +41,13 @@ function App() {
       setCountry(response.data.location.country);
       setSunset(response.data.forecast.forecastday[0].astro.sunset);
       setsunRise(response.data.forecast.forecastday[0].astro.sunrise);
+      setData("");
     })
     .catch(function (error){
       console.log(error);
     })
-  })
+    e.preventDefault();
+  }
 
   return (
     <div className="App">
@@ -56,6 +62,7 @@ function App() {
                 value={data}
                 onChange={(e) => setData(e.target.value)}
               />
+
               <input
                 type="submit"
                 className="btn-searchCountry"
@@ -77,19 +84,24 @@ function App() {
 
           <div className="weather-stat">
             <h1>Current Conditions</h1>
+            <div className="temp-div">
+              <input type="button" onClick={() => setIsLoading(true)} value="°C" className="temps"/>
+              <input type="button" onClick={() => setIsLoading(false)} value="F" className="temps" />         
+            </div>
             <ul>
-              <li>Feels Like:</li>
-              <li>Humidity: {humidity}</li>
-              <li>Wind:{windDirec} {windmph}</li>
-              <li>Sunrise: {sunrise}</li>
-              <li>Sunset: {sunset}</li>
-              <li>Pressure: {pressure}</li>
+              <li>Feels Like: <b>{isLoading ? fah : cel}</b></li>
+              <li>Humidity: <b>{humidity}</b></li>
+              <li>Wind: <b>{windDirec} {windmph}</b></li>
+              <li>Sunrise: <b>{sunrise}</b></li>
+              <li>Sunset: <b>{sunset}</b></li>
+              <li>Pressure: <b>{pressure}</b></li>
             </ul>
           </div>
         </div>
-      </div>
-    </div>
+      </div> {/**Container */}
+    </div>  /**App */
   );
+  
 }
 
 export default App;
