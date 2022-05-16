@@ -53,6 +53,15 @@
     }
   }
 
+  .weather{
+    display: flex;
+    gap:200px;
+
+    .weather-img{
+      height: 120px;
+    }
+  }
+
   .weather-stat {
     @include box-con;
     @include list-none;
@@ -87,7 +96,16 @@
 @media only screen and (min-width: 320px) and (max-width: 502px){
   .con-status{
     .weather-search{
+      height: 400px;
       width: 300px;
+
+      .weather{
+       flex-direction: column;
+       gap:0;
+        .weather-img{
+          height: 150px;
+        }
+      }
     }
     .weather-stat{
       height: 400px;

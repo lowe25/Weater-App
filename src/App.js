@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import "./App.scss";
+import img from "./assets/img/default.jpg";
 function App() {
   const [data, setData] = useState("");
   const [city, setCity] = useState("");
@@ -14,6 +15,7 @@ function App() {
   const [sunrise, setsunRise] = useState("");
   const [fah, setFah] = useState("");
   const [cel, setCel] = useState("");
+  const [defIcon, setdefIcon] = useState(img);
   //const [img, setImg] = useState('');
   const [isLoading, setIsLoading] = useState("");
 
@@ -43,12 +45,15 @@ function App() {
         setSunset(response.data.forecast.forecastday[0].astro.sunset);
         setsunRise(response.data.forecast.forecastday[0].astro.sunrise);
         setData("");
+        setdefIcon(response.data.current.condition.icon);
       })
       .catch(function (error) {
         console.log(error);
       });
     e.preventDefault();
   };
+
+  
 
   return (
     <div className="App">
@@ -76,11 +81,14 @@ function App() {
         <div className="con-status">
           <div className="weather-search">
             <h1>Searched City</h1>
+            <div className="weather">
             <ul>
               <li>City:{city}</li>
               <li>Region: {region}</li>
               <li>Country: {country}</li>
             </ul>
+            <img src={defIcon}  className="weather-img" alt="default-icon" />
+            </div>
           </div>
 
           <div className="weather-stat">
