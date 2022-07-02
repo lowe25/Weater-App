@@ -16,6 +16,7 @@ function App() {
   const [fah, setFah] = useState("");
   const [cel, setCel] = useState("");
   const [defIcon, setdefIcon] = useState(img);
+  const [localTime, setLocaltime] = useState("");
   //const [img, setImg] = useState('');
   const [isLoading, setIsLoading] = useState("");
 
@@ -42,6 +43,8 @@ function App() {
         setCity(response.data.location.name);
         setRegion(response.data.location.region);
         setCountry(response.data.location.country);
+        console.log(response.data.location.localtime)
+        setLocaltime(response.data.location.localtime);
         setSunset(response.data.forecast.forecastday[0].astro.sunset);
         setsunRise(response.data.forecast.forecastday[0].astro.sunrise);
         setData("");
@@ -86,6 +89,7 @@ function App() {
               <li>City:{city}</li>
               <li>Region: {region}</li>
               <li>Country: {country}</li>
+              <li>Local Time and Date: {localTime}</li>
             </ul>
             <img src={defIcon}  className="weather-img" alt="default-icon" />
             </div>
